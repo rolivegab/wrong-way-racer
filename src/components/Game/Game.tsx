@@ -1,7 +1,8 @@
 import { observer } from "mobx-react-lite";
 import { useEffect, useRef } from "react";
 import { gameService } from "src/game/services/game.service";
-import { configStore } from "src/store/config.store";
+import { GameBar } from "../GameBar/GameBar";
+import * as style from "./Game.style";
 export const Game = observer(() => {
   const divRef = useRef<HTMLDivElement>(null);
 
@@ -25,13 +26,8 @@ export const Game = observer(() => {
   }, []);
 
   return (
-    <div
-      ref={divRef}
-      style={{
-        margin: "0 auto",
-        width: "100vw",
-        maxWidth: `calc(100vh * ${configStore.aspectRatio})`,
-      }}
-    />
+    <div ref={divRef} css={style.game}>
+      <GameBar />
+    </div>
   );
 });

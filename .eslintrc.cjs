@@ -13,4 +13,7 @@ module.exports = {
   plugins: ["@typescript-eslint"],
   root: true,
   ignorePatterns: [".eslintrc.cjs"],
+  rules: {
+    "react/no-unknown-property": ["error", { ignore: ["css"] }],
+  },
 };

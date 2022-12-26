@@ -1,15 +1,16 @@
 import { extendObservable, observable } from "mobx";
 import { Assets, Sprite } from "pixi.js";
+import { ACTOR_KEYS } from "../types/actor-keys.type";
 import { Actor } from "../types/actor.type";
 import { Axis2d } from "../types/axis2d.type";
 import { TEXTURE_KEYS } from "../types/sprite-keys.type";
 import { applicationService } from "./application.service";
 import { gameService } from "./game.service";
 
-const ROAD_HEIGHT = 0.45;
+export const ROAD_HEIGHT = 0.3;
 
 const initialPosition: Axis2d = {
-  x: 0,
+  x: applicationService.screen.width / 2,
   y: applicationService.screen.height,
 };
 
@@ -23,15 +24,16 @@ const initializeTexture = () => {
 };
 
 const initializePosition = () => {
+  state.sprite.anchor.x = 0.5;
   state.sprite.anchor.y = 1;
-  state.sprite.width = applicationService.screen.width;
+  state.sprite.width = applicationService.screen.width * 1.2;
   state.sprite.height = applicationService.screen.height * ROAD_HEIGHT;
   state.sprite.x = initialPosition.x;
   state.sprite.y = initialPosition.y;
 };
 
 const load = () => {
-  gameService.addActor(roadService);
+  gameService.addActor(ACTOR_KEYS.ROAD, roadService);
   initializeTexture();
   initializePosition();
 };

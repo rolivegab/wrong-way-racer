@@ -1,15 +1,17 @@
 import { extendObservable, observable } from "mobx";
 import { Assets, Sprite, Texture } from "pixi.js";
+import { ACTOR_KEYS } from "../types/actor-keys.type";
 import { Actor } from "../types/actor.type";
 import { Axis2d } from "../types/axis2d.type";
 import { TEXTURE_KEYS } from "../types/sprite-keys.type";
 import { setScaleTo } from "../utils/set-scale-to";
-import { calculateNextSpringPosition } from "../utils/set-spring-position";
+import { calculateNextSpringPosition } from "../utils/calculate-next-spring-position";
 import { applicationService } from "./application.service";
 import { gameService } from "./game.service";
 
-const DISTANCE_FROM_GROUND = applicationService.screen.height * 0.03;
-const DISTANCE_FROM_BORDER = 0.3;
+const DISTANCE_FROM_GROUND = applicationService.screen.height * 0.045;
+const DISTANCE_FROM_BORDER = 0.25;
+const CAR_WIDTH = 170;
 
 const getCarPositionMap = () => ({
   left: 0 + applicationService.screen.width * DISTANCE_FROM_BORDER,
@@ -63,7 +65,7 @@ const textureFromPosition = (horizontalRelativePosition: number): Texture => {
 
 const initializePosition = () => {
   const sprite = playerCarService.sprite;
-  setScaleTo(sprite, 100, "width");
+  setScaleTo(sprite, CAR_WIDTH, "width");
   sprite.x = initialPosition.x;
   sprite.y = initialPosition.y;
   sprite.anchor.x = 0.5;
@@ -91,7 +93,7 @@ const initializeTexture = () => {
 };
 
 const load = async () => {
-  gameService.addActor(playerCarService);
+  gameService.addActor(ACTOR_KEYS.PLAYER_CAR, playerCarService);
   initializeTexture();
   initializePosition();
   initializeKeyboardListen();
@@ -110,7 +112,7 @@ const onTick: Actor["onTick"] = (delta) => {
     },
     { stiffness: 200, damping: 20, mass: 1 },
     delta / 60,
-    { x: movingToPosition, y: sprite.y }
+    { x: movingToPosition, y: Math.random() * 30 + initialPosition.y }
   );
   sprite.x = position.x;
   sprite.y = position.y;
@@ -121,14 +123,14 @@ const onTick: Actor["onTick"] = (delta) => {
   );
 };
 
-const setNextCarPosition = (to: "left" | "right") => {
+const setNextCarPosition = (action: "left" | "right") => {
   let finalMoving: typeof state.movingTo;
   if (state.movingTo === "center") {
-    finalMoving = to === "left" ? "left" : "right";
+    finalMoving = action === "left" ? "left" : "right";
   } else if (state.movingTo === "left") {
-    finalMoving = to === "left" ? "left" : "center";
+    finalMoving = action === "left" ? "left" : "center";
   } else {
-    finalMoving = to === "left" ? "center" : "right";
+    finalMoving = action === "left" ? "center" : "right";
   }
 
   state.movingTo = finalMoving;

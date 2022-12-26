@@ -1,12 +1,12 @@
 import { extendObservable, observable } from "mobx";
 import { Assets, Sprite } from "pixi.js";
+import { ACTOR_KEYS } from "../types/actor-keys.type";
 import { Actor } from "../types/actor.type";
 import { Axis2d } from "../types/axis2d.type";
 import { TEXTURE_KEYS } from "../types/sprite-keys.type";
+import { setScaleTo } from "../utils/set-scale-to";
 import { applicationService } from "./application.service";
 import { gameService } from "./game.service";
-
-const SKY_HEIGHT = 0.8;
 
 const initialPosition: Axis2d = {
   x: 0,
@@ -23,14 +23,13 @@ const initializeTexture = () => {
 };
 
 const initializePosition = () => {
-  state.sprite.width = applicationService.screen.width;
-  state.sprite.height = applicationService.screen.height * SKY_HEIGHT;
+  setScaleTo(state.sprite, applicationService.screen.width, "width");
   state.sprite.x = initialPosition.x;
   state.sprite.y = initialPosition.y;
 };
 
 const load = () => {
-  gameService.addActor(skyService);
+  gameService.addActor(ACTOR_KEYS.SKY, skyService);
   initializeTexture();
   initializePosition();
 };

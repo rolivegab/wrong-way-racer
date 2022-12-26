@@ -6,13 +6,12 @@ export const setScaleTo = (
   type: "width" | "height"
 ) => {
   let factor = 0;
+  factor = sprite.width / sprite.height;
   if (type === "width") {
-    factor = sprite.width / value;
     sprite.width = value;
-    sprite.height = sprite.height / factor;
+    sprite.height = value / factor;
   } else {
-    factor = sprite.height / value;
-    sprite.width = sprite.width / factor;
+    sprite.width = value / factor;
     sprite.height = value;
   }
 };

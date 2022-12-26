@@ -9,6 +9,11 @@ const assetUrls = new Map<TEXTURE_KEYS, string>([
   [TEXTURE_KEYS.PLAYER_CAR_RIGHT, "src/assets/cars/car_right.png"],
   [TEXTURE_KEYS.ROAD, "src/assets/road.png"],
   [TEXTURE_KEYS.SKY, "src/assets/sky.png"],
+  [TEXTURE_KEYS.MOUNTAIN_FADE, "src/assets/mountain_fade.png"],
+  [TEXTURE_KEYS.MOUNTAIN_LEFT, "src/assets/mountain_left.png"],
+  [TEXTURE_KEYS.MOUNTAIN_RIGHT, "src/assets/mountain_right.png"],
+  [TEXTURE_KEYS.SIDEROAD_LEFT, "src/assets/sideroad_left.png"],
+  [TEXTURE_KEYS.SIDEROAD_RIGHT, "src/assets/sideroad_right.png"],
 ]);
 
 const loadSprites = async () => {
