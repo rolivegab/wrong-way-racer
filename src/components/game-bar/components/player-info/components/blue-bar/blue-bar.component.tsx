@@ -1,6 +1,6 @@
 import { Typography } from "@mui/material";
-import { Box } from "@mui/system";
-import * as style from "./BlueBar.style";
+import { Box } from "@mui/material";
+import * as style from "./blue-bar.style";
 
 interface Props {
   value: number;

@@ -46,6 +46,7 @@ const load = () => {
   const texture = Assets.get(TEXTURE_KEYS.MOUNTAIN_RIGHT);
   state.sprite.texture = texture;
   gameService.addActor(ACTOR_KEYS.MOUNTAIN_RIGHT, mountainRightService);
+  gameService.addToStage(state.sprite);
   initialize();
 };
 

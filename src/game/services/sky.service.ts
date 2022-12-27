@@ -30,6 +30,7 @@ const initializePosition = () => {
 
 const load = () => {
   gameService.addActor(ACTOR_KEYS.SKY, skyService);
+  gameService.addToStage(state.sprite);
   initializeTexture();
   initializePosition();
 };

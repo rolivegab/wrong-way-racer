@@ -14,6 +14,9 @@ const assetUrls = new Map<TEXTURE_KEYS, string>([
   [TEXTURE_KEYS.MOUNTAIN_RIGHT, "src/assets/mountain_right.png"],
   [TEXTURE_KEYS.SIDEROAD_LEFT, "src/assets/sideroad_left.png"],
   [TEXTURE_KEYS.SIDEROAD_RIGHT, "src/assets/sideroad_right.png"],
+  [TEXTURE_KEYS.ENEMY_LEFT, "src/assets/cars/enemy_left.png"],
+  [TEXTURE_KEYS.ENEMY_CENTER, "src/assets/cars/enemy_center.png"],
+  [TEXTURE_KEYS.ENEMY_RIGHT, "src/assets/cars/enemy_right.png"],
 ]);
 
 const loadSprites = async () => {

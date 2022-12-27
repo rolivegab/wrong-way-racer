@@ -8,5 +8,7 @@ export const container = css`
       #0c0c4c 71.87%
     ),
     #131444;
-  padding-top: ${theme.spacing(3)};
+  padding-top: ${theme.spacing(6)};
+  display: flex;
+  justify-content: center;
 `;

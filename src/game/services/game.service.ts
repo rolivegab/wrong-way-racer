@@ -1,8 +1,11 @@
 import { extendObservable, observable } from "mobx";
+import { Graphics, Sprite } from "pixi.js";
 import { Actor } from "src/game/types/actor.type";
 import { ACTOR_KEYS } from "../types/actor-keys.type";
 import { applicationService } from "./application.service";
 import { blurService } from "./blur.service";
+import { enemyService } from "./enemy.service";
+import { explosionService } from "./explosion.service";
 import { loadService } from "./load.service";
 import { mountainFadeService } from "./mountain-fade.service";
 import { mountainLeftService } from "./mountain-left.service";
@@ -12,6 +15,7 @@ import { roadService } from "./road.service";
 import { sideRoadLeftService } from "./sideroad-left";
 import { sideRoadRightService } from "./sideroad-right";
 import { skyService } from "./sky.service";
+import { socketService } from "./socket.service";
 
 const state = observable({
   loaded: false,
@@ -30,15 +34,19 @@ const loadActors = () => {
   mountainRightService.load();
   sideRoadLeftService.load();
   sideRoadRightService.load();
+  enemyService.load();
   playerCarService.load();
   blurService.load();
+  explosionService.load();
 };
 
 const load = async () => {
   if (!state.loaded) {
     state.loaded = true;
-    await loadAssets();
-    loadActors();
+    loadAssets().then(() => {
+      loadActors();
+      socketService.initialize();
+    });
 
     const ticker = applicationService.app.ticker.add((delta) => {
       state.actors.forEach((actor) => {
@@ -49,6 +57,10 @@ const load = async () => {
 
     ticker.start();
   }
+};
+
+const clean = () => {
+  socketService.clean();
 };
 
 const attachToDiv = (div: HTMLDivElement) => {
@@ -62,7 +74,10 @@ const removeFromDiv = (div: HTMLDivElement) => {
 
 const addActor = (key: ACTOR_KEYS, actor: Actor) => {
   state.actors.set(key, actor);
-  applicationService.app.stage.addChild(actor.sprite);
+};
+
+const addToStage = (target: Sprite | Graphics) => {
+  applicationService.app.stage.addChild(target);
 };
 
 export const gameService = extendObservable(state, {
@@ -70,4 +85,6 @@ export const gameService = extendObservable(state, {
   attachToDiv,
   removeFromDiv,
   addActor,
+  clean,
+  addToStage,
 });

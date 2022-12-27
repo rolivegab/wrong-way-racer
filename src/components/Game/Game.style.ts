@@ -4,8 +4,8 @@ import { configStore } from "src/store/config.store";
 export const game = css`
   border-radius: 20px;
   margin: 0 auto;
-  width: 100vw;
-  max-width: calc(100vh * ${configStore.aspectRatio});
+  width: 100%;
+  max-width: calc(100% * ${configStore.aspectRatio});
   overflow: hidden;
   position: relative;
 

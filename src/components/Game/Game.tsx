@@ -1,8 +1,9 @@
 import { observer } from "mobx-react-lite";
 import { useEffect, useRef } from "react";
 import { gameService } from "src/game/services/game.service";
-import { GameBar } from "../GameBar/GameBar";
-import * as style from "./Game.style";
+import { GameBar } from "../game-bar/game-bar.component";
+import * as style from "./game.style";
+
 export const Game = observer(() => {
   const divRef = useRef<HTMLDivElement>(null);
 
@@ -13,6 +14,7 @@ export const Game = observer(() => {
 
   const unload = async (div: HTMLDivElement) => {
     gameService.removeFromDiv(div);
+    gameService.clean();
   };
 
   useEffect(() => {

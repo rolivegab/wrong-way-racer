@@ -1,6 +1,6 @@
 import { Box, Typography } from "@mui/material";
 import { ReactElement } from "react";
-import { SmallInfoContainer } from "./SmallInfoContainer";
+import { SmallInfoContainer } from "./small-info-container.component";
 
 interface Props {
   icon: ReactElement;

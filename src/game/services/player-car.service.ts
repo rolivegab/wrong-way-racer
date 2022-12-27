@@ -30,6 +30,7 @@ export const state = observable({
   movingTo: "center" as "left" | "center" | "right",
   velocity: { x: 0, y: 0 },
   sprite: new Sprite(),
+  paused: false,
 });
 
 const CAR_SPRITE_RENDER_LOGIC = [
@@ -94,13 +95,16 @@ const initializeTexture = () => {
 
 const load = async () => {
   gameService.addActor(ACTOR_KEYS.PLAYER_CAR, playerCarService);
+  gameService.addToStage(state.sprite);
   initializeTexture();
   initializePosition();
   initializeKeyboardListen();
 };
 
 const onTick: Actor["onTick"] = (delta) => {
+  if (state.paused) return;
   const sprite = playerCarService.sprite;
+  sprite.zIndex = 2;
   const movingToPosition = getCarPositionMap()[state.movingTo];
   const { position, velocity } = calculateNextSpringPosition(
     {

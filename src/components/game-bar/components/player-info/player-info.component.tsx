@@ -1,8 +1,8 @@
 import { Typography } from "@mui/material";
-import { Box } from "@mui/system";
-import { BlueBar } from "./components/BlueBar/BlueBar";
-import { NumberPanel } from "./components/NumberPanel/NumberPanel";
-import * as style from "./PlayerInfo.style";
+import { Box } from "@mui/material";
+import { BlueBar } from "./components/blue-bar/blue-bar.component";
+import { NumberPanel } from "./components/number-panel/number-panel.component";
+import * as style from "./player-info.style";
 
 export const PlayerInfo = () => {
   return (

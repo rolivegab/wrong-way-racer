@@ -1,10 +1,10 @@
 import { Box, Container } from "@mui/material";
-import { Coin } from "src/components/GameBar/components/Coin";
-import { Thunder } from "src/components/GameBar/components/Thunder";
-import { Heart } from "src/components/GameBar/components/Heart";
-import { SmallInfo } from "./components/SmallInfo";
-import * as style from "./GameBar.style";
-import { PlayerInfo } from "./components/PlayerInfo/PlayerInfo";
+import { Coin } from "src/components/game-bar/components/coin.component";
+import { Thunder } from "src/components/game-bar/components/thunder.component";
+import { Heart } from "src/components/game-bar/components/heart.component";
+import { SmallInfo } from "./components/small-info.component";
+import * as style from "./game-bar.style";
+import { PlayerInfo } from "./components/player-info/player-info.component";
 
 export const GameBar = () => {
   return (

@@ -25,6 +25,7 @@ const load = () => {
   // state.sprite.tint = 0x000000;
   // state.sprite.height = applicationService.screen.height;
   gameService.addActor(ACTOR_KEYS.MOUNTAIN_FADE, mountainFadeService);
+  gameService.addToStage(state.sprite);
 };
 
 export const mountainFadeService = extendObservable(state, {

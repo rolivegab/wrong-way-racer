@@ -36,8 +36,10 @@ const load = () => {
   const filter = new filters.BlurFilter(15);
   filter.padding = applicationService.screen.width;
   state.sprite.filters = [filter];
+  state.sprite.zIndex = 1;
   state.sprite.blendMode = BLEND_MODES.SCREEN;
   gameService.addActor(ACTOR_KEYS.BLUR, blurService);
+  gameService.addToStage(state.sprite);
 };
 
 export const blurService = extendObservable(state, { load }) satisfies Actor;

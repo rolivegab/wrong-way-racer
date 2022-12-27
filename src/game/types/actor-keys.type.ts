@@ -8,4 +8,6 @@ export const enum ACTOR_KEYS {
   MOUNTAIN_RIGHT,
   SIDEROAD_LEFT,
   SIDEROAD_RIGHT,
+  ENEMY,
+  EXPLOSION,
 }

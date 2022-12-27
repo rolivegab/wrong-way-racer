@@ -46,6 +46,7 @@ const load = () => {
   const texture = Assets.get(TEXTURE_KEYS.SIDEROAD_LEFT);
   state.sprite.texture = texture;
   gameService.addActor(ACTOR_KEYS.SIDEROAD_LEFT, sideRoadLeftService);
+  gameService.addToStage(state.sprite);
   initialize();
 };
 
